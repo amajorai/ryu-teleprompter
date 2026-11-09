@@ -1,0 +1,254 @@
+@import "tailwindcss";
+@import "@ryu/ui/app-ui.css";
+@source "./";
+@source "../../../../packages/ui/src/components/badge.tsx";
+@source "../../../../packages/ui/src/components/button.tsx";
+@source "../../../../packages/ui/src/components/dialog.tsx";
+@source "../../../../packages/ui/src/components/input.tsx";
+@source "../../../../packages/ui/src/components/label.tsx";
+@source "../../../../packages/ui/src/components/slider.tsx";
+@source "../../../../packages/ui/src/components/spinner.tsx";
+@source "../../../../packages/ui/src/components/switch.tsx";
+@source "../../../../packages/ui/src/components/textarea.tsx";
+@source "../../../../packages/ui/src/components/toggle-group.tsx";
+@source "../../../../packages/ui/src/components/toggle.tsx";
+
+/* Editor: script beside the saved-script library; stacks in narrow panels. */
+.prompter-editor {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(14rem, 1fr);
+	gap: 2rem;
+	align-items: start;
+	width: 100%;
+	max-width: 76rem;
+	margin-inline: auto;
+}
+.prompter-editor__text {
+	min-height: 18rem;
+	font-size: 0.95rem;
+	line-height: 1.6;
+}
+.prompter-inline {
+	display: flex;
+	gap: 0.625rem;
+	align-items: center;
+}
+.prompter-status {
+	min-height: 1.25rem;
+	font-size: 0.8125rem;
+	color: var(--muted-foreground);
+}
+.prompter-status__error {
+	color: var(--destructive);
+}
+
+/* Prompter */
+.prompter {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	min-height: 0;
+}
+.prompter-toolbar {
+	flex-wrap: wrap;
+	row-gap: 0.5rem;
+}
+.prompter-controls {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.375rem;
+	align-items: center;
+	min-width: 0;
+}
+.prompter-progress {
+	font-size: 0.75rem;
+	font-variant-numeric: tabular-nums;
+	color: var(--muted-foreground);
+	white-space: nowrap;
+}
+.prompter-badge[data-speaking="true"] svg {
+	animation: prompter-pulse 1.2s ease-in-out infinite;
+}
+.prompter-alert {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.625rem 1rem;
+	font-size: 0.8125rem;
+	color: var(--foreground);
+	background: color-mix(in oklch, var(--destructive) 10%, transparent);
+	border-block-end: 1px solid var(--border);
+}
+.prompter-body {
+	display: flex;
+	flex: 1;
+	min-height: 0;
+}
+.prompter-viewport {
+	position: relative;
+	flex: 1;
+	min-width: 0;
+	min-height: 0;
+	font-size: var(--prompter-font-size);
+	line-height: 1.35;
+}
+.prompter-scroll {
+	position: absolute;
+	inset: 0;
+	padding-inline: 1.25rem;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	scrollbar-width: thin;
+}
+.prompter-spacer-top {
+	height: var(--prompter-reading-line);
+}
+.prompter-spacer-bottom {
+	height: 100%;
+}
+.prompter-reading-line {
+	position: absolute;
+	inset-inline: 0;
+	top: var(--prompter-reading-line);
+	height: 1.35em;
+	pointer-events: none;
+	background: color-mix(in oklch, var(--primary) 7%, transparent);
+	border-block: 1px solid color-mix(in oklch, var(--primary) 25%, transparent);
+}
+.prompter-text {
+	max-width: var(--prompter-line-width);
+	margin-inline: auto;
+	font-weight: 500;
+	color: var(--foreground);
+	overflow-wrap: anywhere;
+}
+.prompter-text[data-mirror="true"] {
+	transform: scaleX(-1);
+}
+.prompter-text p,
+.prompter-text h2,
+.prompter-text h3,
+.prompter-text h4 {
+	margin: 0 0 0.35em;
+}
+.prompter-heading {
+	font-weight: 700;
+}
+.prompter-heading[data-level="1"] {
+	font-size: 1.3em;
+}
+.prompter-heading[data-level="2"] {
+	font-size: 1.15em;
+}
+.prompter-heading[data-level="3"] {
+	font-size: 1.05em;
+}
+.prompter-item::before {
+	color: var(--muted-foreground);
+	content: "•  ";
+}
+.prompter-blank {
+	height: 0.5em;
+}
+.prompter-word {
+	cursor: pointer;
+	border-radius: 0.2em;
+	transition:
+		color 160ms ease,
+		opacity 160ms ease,
+		background-color 160ms ease;
+}
+.prompter-word[data-state="spoken"] {
+	color: var(--muted-foreground);
+	opacity: 0.45;
+}
+.prompter-word[data-state="current"] {
+	background: color-mix(in oklch, var(--primary) 20%, transparent);
+	box-shadow: 0 0 0 0.08em color-mix(in oklch, var(--primary) 20%, transparent);
+}
+.prompter-cue {
+	font-size: 0.6em;
+	font-style: italic;
+	vertical-align: middle;
+	color: var(--muted-foreground);
+}
+.prompter-heard {
+	position: absolute;
+	inset-inline: 0.75rem;
+	bottom: 0.5rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 0.75rem;
+	line-height: 1.4;
+	color: var(--muted-foreground);
+	text-align: center;
+	white-space: nowrap;
+	pointer-events: none;
+}
+.prompter-display {
+	flex: 0 0 18rem;
+	padding: 1rem;
+	overflow-y: auto;
+	border-inline-start: 1px solid var(--border);
+}
+.prompter-hint {
+	font-size: 0.75rem;
+	line-height: 1.5;
+	color: var(--muted-foreground);
+}
+
+@keyframes prompter-pulse {
+	50% {
+		opacity: 0.35;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.prompter-word {
+		transition: none;
+	}
+	.prompter-badge[data-speaking="true"] svg {
+		animation: none;
+	}
+}
+
+/* Compact layout for Island's narrow panel and small Desktop windows (the frame is the viewport). */
+@media (max-width: 560px) {
+	/* Scale down in narrow panels such as Island; the setting is the upper bound. */
+	.prompter-viewport {
+		font-size: min(var(--prompter-font-size), 9vw);
+	}
+	.prompter-editor {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1.25rem;
+	}
+	.prompter-editor__text {
+		min-height: 10rem;
+	}
+	.prompter-progress {
+		display: none;
+	}
+	/* Icon-only buttons keep their visible label as the accessible name. */
+	.prompter-label {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		white-space: nowrap;
+		clip-path: inset(50%);
+	}
+	.prompter-body {
+		flex-direction: column-reverse;
+	}
+	.prompter-display {
+		flex: 0 0 auto;
+		max-height: 45%;
+		border-block-end: 1px solid var(--border);
+		border-inline-start: 0;
+	}
+	.prompter-scroll {
+		padding-inline: 0.75rem;
+	}
+}

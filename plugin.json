@@ -1,0 +1,25 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ryu.teleprompter",
+  "version": "0.1.0",
+  "description": "A voice-following teleprompter that scrolls your script as you speak, using Ryu's own speech-to-text models instead of a browser or cloud recognizer.",
+  "author": {
+    "name": "Ryu",
+    "url": "https://ryuhq.com"
+  },
+  "homepage": "https://github.com/amajorai/ryu-teleprompter",
+  "repository": "https://github.com/amajorai/ryu-teleprompter",
+  "keywords": [
+    "teleprompter",
+    "prompter",
+    "script",
+    "voice following",
+    "autocue"
+  ],
+  "extensions": {
+    "com.ryuhq.ryu": {
+      "id": "@ryu/teleprompter",
+      "displayName": "Teleprompter"
+    }
+  }
+}
